@@ -31,7 +31,9 @@ module.exports = {
         "import/order": 2
     },
     "ignorePatterns": [
-        ".eslintrc.js"
+        ".eslintrc.js",
+        "jest.config.js",
+        "tailwind.config.js"
     ],
     "root": true,
     "env":{

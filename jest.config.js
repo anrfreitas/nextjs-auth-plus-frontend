@@ -15,14 +15,7 @@ module.exports = {
     moduleNameMapper: {
         // Handle image and style imports
         // https://jestjs.io/docs/webpack#handling-static-assets
-        '.svg$': '<rootDir>/src/__mocks__/svgMock.js',
-        '.(css|scss)$': '<rootDir>/src/__mocks__/styleMock.js',
         '^@components/(.+)$': '<rootDir>/src/components/$1',
-        '^@hooks/(.+)$': '<rootDir>/src/hooks/$1',
-        '^@utils/(.+)$': '<rootDir>/src/utils/$1',
-        '^@config': '<rootDir>/src/global/config.ts',
-        '^@storageKeys': '<rootDir>/src/global/storageKeys.ts',
-        '^@store': '<rootDir>/src/global/store.ts',
     },
 
     // A map from regular expressions to paths to transformers
