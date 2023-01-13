@@ -1,4 +1,5 @@
 module.exports = {
+    "parser":"@typescript-eslint/parser",
     parserOptions: {
         tsconfigRootDir: __dirname,
         project: './tsconfig.json'
@@ -12,6 +13,7 @@ module.exports = {
         "next/core-web-vitals",
         "plugin:@typescript-eslint/recommended",
         "plugin:import/typescript",
+        "plugin:import/recommended",
         "prettier"
     ],
     "rules": {
@@ -25,9 +27,15 @@ module.exports = {
         "@typescript-eslint/ban-ts-comment": [2, {"ts-ignore": "allow-with-description"}],
         "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
         "@typescript-eslint/ban-types": "off",
+        "import/no-unresolved": "off",
         "import/order": 2
     },
     "ignorePatterns": [
         ".eslintrc.js"
     ],
+    "root": true,
+    "env":{
+       "node": true,
+       "jest": true
+    }
 };
