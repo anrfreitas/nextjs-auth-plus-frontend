@@ -32,13 +32,12 @@
     "preserveWatchOutput": true,
     "strict": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": ".",
 
     "paths": {
       "@/*": ["./src/*"],
-      "@styles/*": ["src/styles/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.css"],
   "exclude": ["node_modules"]
 }
