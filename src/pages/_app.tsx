@@ -1,8 +1,19 @@
-import '@/styles/globals.css';
 import '@/styles/tailwind.css';
-
+import '@/styles/globals.css';
+import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
+import AuthGuard from '@/components/AuthGuard';
 
-export default function App({ Component, pageProps }: AppProps) {
-    return <Component {...pageProps} />;
+type Props = AppProps & {
+    Component: PageComponent;
+};
+
+export default function App({ Component, pageProps }: Props) {
+    return (
+        <SessionProvider>
+            <AuthGuard authType={Component.authType}>
+                <Component {...pageProps} />
+            </AuthGuard>
+        </SessionProvider>
+    );
 }
