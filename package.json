@@ -2,7 +2,7 @@
   "name": "nextjs-auth-plus-frontend",
   "author": "André Freitas",
   "version": "1.0.0",
-  "description": "This project was created to demonstrate my tech skills using NestJS framework",
+  "description": "This project was created to demonstrate my tech skills using NextJS framework",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
