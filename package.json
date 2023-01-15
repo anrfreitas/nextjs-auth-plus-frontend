@@ -14,11 +14,12 @@
     "husky:prepare": "husky install",
     "db:generate": "yarn prisma generate --schema=./node_modules/@nestjs-prisma/database/prisma/schema.prisma",
     "db:deploy": "yarn prisma migrate deploy --schema=./node_modules/@nestjs-prisma/database/prisma/schema.prisma",
-    "db:seed": "yarn --cwd ./node_modules/@nestjs-prisma/database ts-node src/seed/seed.ts"
+    "db:seed": "yarn --cwd ./node_modules/@nestjs-prisma/database ts-node src/seed/seed.ts",
+    "external:refresh": "sh refresh.sh"
   },
   "dependencies": {
-    "@nestjs-prisma/database": "git+https://github.com/anrfreitas/nestjs-prisma-client.git#1.0.4",
-    "@nestjs-typescript/global-types": "git+https://github.com/anrfreitas/nestjs-global-types.git#1.0.2",
+    "@nestjs-prisma/database": "git+https://github.com/anrfreitas/nestjs-prisma-client.git#^1.0.5",
+    "@nestjs-typescript/global-types": "git+https://github.com/anrfreitas/nestjs-global-types.git#^1.0.3",
     "@next-auth/prisma-adapter": "^1.0.5",
     "@next/font": "13.1.2",
     "@types/node": "18.11.18",
