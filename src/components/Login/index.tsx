@@ -18,6 +18,10 @@ const Login = () => {
         } else Router.push('/dashboard');
     };
 
+    const onSSOButtonClick = async () => {
+        await signIn('google');
+    };
+
     const onEnterKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') onLoginButtonClick();
     };
@@ -34,6 +38,9 @@ const Login = () => {
             />
             <button className="btn btn-blue mt-3 p-2" onClick={onLoginButtonClick}>
                 Login
+            </button>
+            <button className="btn btn-blue mt-3 p-2" onClick={onSSOButtonClick}>
+                Login with Google
             </button>
         </div>
     );
