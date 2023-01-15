@@ -9,19 +9,11 @@ import config from '@config';
 const protectedUserRoute = async (req: NextApiRequest): Promise<Session> => {
     const session = await getSession({ req });
     if (!session) throw new Error('401 Unauthorized');
-    if (session.authType !== 'users') throw new Error('401 Unauthorized');
+    if (session.authType !== 'USER') throw new Error('401 Unauthorized');
     return Promise.resolve(session);
 };
 
-const protectedStudentRoute = async (req: NextApiRequest): Promise<Session> => {
-    const session = await getSession({ req });
-    if (!session) throw new Error('401 Unauthorized');
-    if (session.authType !== 'students') throw new Error('401 Unauthorized');
-    return Promise.resolve(session);
-};
-
-// @return AxiosInstance
-const setupAxiosAuthentication = (req: NextApiRequest): any => {
+const setupAxiosAuthentication = (req: NextApiRequest): typeof axiosInstance => {
     const cookie = getCookie('app.session-token', { req });
     if (!cookie) return undefined;
 
@@ -32,4 +24,4 @@ const setupAxiosAuthentication = (req: NextApiRequest): any => {
     return axiosInstance;
 };
 
-export { protectedUserRoute, protectedStudentRoute, setupAxiosAuthentication };
+export { protectedUserRoute, setupAxiosAuthentication };

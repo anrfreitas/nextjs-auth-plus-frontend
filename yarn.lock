@@ -587,9 +587,9 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@nestjs-prisma/database@git+https://github.com/anrfreitas/nestjs-prisma-client.git#^1.0.5":
-  version "1.0.5"
-  resolved "git+https://github.com/anrfreitas/nestjs-prisma-client.git#7b7fdb8c3e109e6a23e8ac721137f37d42c13135"
+"@nestjs-prisma/database@git+https://github.com/anrfreitas/nestjs-prisma-client.git#^1.0.6":
+  version "1.0.6"
+  resolved "git+https://github.com/anrfreitas/nestjs-prisma-client.git#60d2db72fa0b2633b8907e6ba36ed835a75b2854"
   dependencies:
     "@nestjs/common" "^8.3.1"
     "@prisma/client" "4.8.1"
@@ -598,11 +598,22 @@
     ts-node "^10.9.1"
     typescript "^4.4.4"
 
-"@nestjs-typescript/global-types@git+https://github.com/anrfreitas/nestjs-global-types.git#^1.0.3":
-  version "1.0.3"
-  resolved "git+https://github.com/anrfreitas/nestjs-global-types.git#f88c66bffc7a0d4fcb71b6c73832e162ca7f9dcc"
+"@nestjs-prisma/database@git+https://github.com/anrfreitas/nestjs-prisma-client.git#latest":
+  version "1.0.7"
+  resolved "git+https://github.com/anrfreitas/nestjs-prisma-client.git#a3bb77b64411168bd88eece2bf0b12b8bc60fc33"
   dependencies:
-    "@nestjs-prisma/database" "git+https://github.com/anrfreitas/nestjs-prisma-client.git#^1.0.5"
+    "@nestjs/common" "^8.3.1"
+    "@prisma/client" "4.8.1"
+    "@types/node" "^18.11.18"
+    prisma "^4.8.1"
+    ts-node "^10.9.1"
+    typescript "^4.4.4"
+
+"@nestjs-typescript/global-types@git+https://github.com/anrfreitas/nestjs-global-types.git#latest":
+  version "1.0.4"
+  resolved "git+https://github.com/anrfreitas/nestjs-global-types.git#8dd923f71b6f069205192148e2a891551a0b7461"
+  dependencies:
+    "@nestjs-prisma/database" "git+https://github.com/anrfreitas/nestjs-prisma-client.git#^1.0.6"
     "@types/node" "^18.11.18"
     ts-node "^10.9.1"
     typescript "^4.4.4"
@@ -4388,6 +4399,11 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+reflect-metadata@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
+  integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
 
 regenerator-runtime@^0.13.11:
   version "0.13.11"
