@@ -3,6 +3,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import Credentials, { CredentialInput } from 'next-auth/providers/credentials';
 import PrismaClient from 'src/pages/api/helpers/auth/PrismaClient';
 import Hasher from '@/pages/api/helpers/hash/Hasher';
+import GoogleProvider from '@/pages/api/helpers/providers/GoogleProvider';
 
 const prisma = PrismaClient;
 
@@ -16,6 +17,7 @@ export default NextAuth({
         signIn: '/login',
     },
     providers: [
+        GoogleProvider,
         Credentials<UserCredentials>({
             id: 'users',
             name: 'Users',
@@ -51,8 +53,31 @@ export default NextAuth({
     ],
     callbacks: {
         async signIn({ user, account }) {
-            // @TODO
-            console.log(user, account);
+            if (account.type === 'oauth' && user.email) {
+                const existingUser = await prisma.user.findUnique({
+                    where: {
+                        email: user.email,
+                    },
+                });
+
+                if (existingUser) {
+                    await prisma.account.upsert({
+                        where: {
+                            provider_providerAccountId: {
+                                provider: account.provider,
+                                providerAccountId: account.providerAccountId,
+                            },
+                        },
+                        update: {
+                            ...account,
+                        },
+                        create: {
+                            ...account,
+                            userId: existingUser.id,
+                        },
+                    });
+                }
+            }
             return true;
         },
         async jwt({ token, user, account }) {
