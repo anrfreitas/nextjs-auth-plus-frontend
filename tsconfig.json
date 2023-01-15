@@ -36,6 +36,7 @@
 
     "paths": {
       "@/*": ["./src/*"],
+      "@config": ["src/global/config.ts"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.css"],
