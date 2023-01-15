@@ -14,7 +14,8 @@
     "husky:prepare": "husky install",
     "db:generate": "yarn prisma generate --schema=./node_modules/@nestjs-prisma/database/prisma/schema.prisma",
     "db:deploy": "yarn prisma migrate deploy --schema=./node_modules/@nestjs-prisma/database/prisma/schema.prisma",
-    "db:seed": "yarn --cwd ./node_modules/@nestjs-prisma/database ts-node src/seed/seed.ts"
+    "db:seed": "yarn --cwd ./node_modules/@nestjs-prisma/database ts-node src/seed/seed.ts",
+    "upgrade:dependencies": "yarn upgrade --latest --pattern '@nestjs-*/*'"
   },
   "dependencies": {
     "@nestjs-prisma/database": "git+https://github.com/anrfreitas/nestjs-prisma-client.git#latest",

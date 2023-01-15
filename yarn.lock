@@ -589,6 +589,7 @@
 
 "@nestjs-prisma/database@git+https://github.com/anrfreitas/nestjs-prisma-client.git#^1.0.6", "@nestjs-prisma/database@git+https://github.com/anrfreitas/nestjs-prisma-client.git#latest":
   version "1.0.8"
+  uid "54e4d4679c81c1645c9fee0a62eaad585bf68717"
   resolved "git+https://github.com/anrfreitas/nestjs-prisma-client.git#54e4d4679c81c1645c9fee0a62eaad585bf68717"
   dependencies:
     "@nestjs/common" "^8.3.1"
