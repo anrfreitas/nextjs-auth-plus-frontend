@@ -2,6 +2,7 @@ import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import Router from 'next/router';
 import LoadingScreen from '../LoadingScreen';
+import useRedirect from '@/hooks/useRedirect';
 
 type Props = {
     children: JSX.Element;
@@ -10,15 +11,17 @@ type Props = {
 
 const AuthGuard = ({ children }: Props) => {
     const { status } = useSession<false>();
+    const redirect = useRedirect();
 
     useEffect(() => {
-        if (status !== 'authenticated' && status !== 'loading') {
-            Router.push('/login');
+        if (status === 'authenticated' && Router.pathname.includes('login')) {
+            redirect.redirectToDashboard();
         }
 
-        if (status === 'authenticated' && Router.pathname.includes('login')) {
-            Router.push('/dashboard');
+        if (status !== 'authenticated' && status !== 'loading') {
+            redirect.redirectToLogin();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [status]);
 
     if (status === 'loading') return <LoadingScreen />;
