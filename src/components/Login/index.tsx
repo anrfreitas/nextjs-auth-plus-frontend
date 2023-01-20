@@ -1,8 +1,17 @@
-import { signIn } from 'next-auth/react';
-import { useState } from 'react';
-import Router from 'next/router';
+import { signIn, useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as freeBrandsIcons from '@fortawesome/free-brands-svg-icons';
+import Button from '../controls/Button';
+import TextInput from '../controls/TextInput';
+import LoadingScreen from '../LoadingScreen';
+import useRedirect from '@/hooks/useRedirect';
 
 const Login = () => {
+    const redirect = useRedirect();
+    const { status } = useSession<false>();
+
+    const [loading, setLoading] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -15,10 +24,11 @@ const Login = () => {
 
         if (result.error) {
             alert('Hey! Looks like you entered invalid credentials.');
-        } else Router.push('/dashboard');
+        } else redirect.redirectToDashboard();
     };
 
     const onSSOButtonClick = async () => {
+        console.log('clicked');
         await signIn('google');
     };
 
@@ -26,22 +36,39 @@ const Login = () => {
         if (e.key === 'Enter') onLoginButtonClick();
     };
 
-    return (
-        <div className="flex flex-col bg-gray-light p-4 w-[250px]">
-            <span>Email: </span>
-            <input type="text" onChange={(e) => setEmail(e.target.value)} />
-            <span className="mt-2">Password: </span>
-            <input
-                type="password"
-                onKeyDown={(e) => onEnterKeyDown(e)}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button className="btn btn-blue mt-3 p-2" onClick={onLoginButtonClick}>
-                Login
-            </button>
-            <button className="btn btn-blue mt-3 p-2" onClick={onSSOButtonClick}>
-                Login with Google
-            </button>
+    const googleIcon = <FontAwesomeIcon className="mr-2" icon={freeBrandsIcons.faGoogle} />;
+
+    useEffect(() => {
+        /*
+            Auth Guard Rule
+            - If the user is unauthenticated, we proceed showing the login screen
+            - If not, we keep the loading page active because AuthGuard will redirect to /dashboard
+        */
+        if (status === 'unauthenticated') setLoading(false);
+    }, [loading, status]);
+
+    return loading ? (
+        <LoadingScreen />
+    ) : (
+        <div className="flex flex-col mt-3 ml-3 items-center">
+            <div className="flex flex-col bg-special-blue p-4 w-[22rem] rounded-md">
+                <span>Email: </span>
+                <TextInput value={email} setValue={setEmail} />
+                <span className="mt-2">Password: </span>
+                <TextInput
+                    isPassword
+                    onKeyDown={(e) => onEnterKeyDown(e)}
+                    value={password}
+                    setValue={setPassword}
+                />
+                <Button text="Login" className="mt-3" onClick={onLoginButtonClick} />
+                <Button
+                    text="Login with Google"
+                    className="mt-3"
+                    icon={googleIcon}
+                    onClick={onSSOButtonClick}
+                />
+            </div>
         </div>
     );
 };

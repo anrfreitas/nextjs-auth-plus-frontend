@@ -1,19 +1,29 @@
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import { useState } from 'react';
+import WelcomeModal from '../modals/WelcomeModal';
+
+import SideMenu from '../SideMenu';
 
 const Dashboard = () => {
     const { data } = useSession();
+    const [open, setOpen] = useState(false);
 
-    const onLogoutButtonClick = async () => {
-        await signOut();
-    };
+    const toggleModal = () => setOpen(!open);
 
     return (
-        <div className="flex flex-col bg-white p-4 w-[250px]">
-            Welcome {data?.user.name}!
-            <button className="btn btn-blue mt-3 p-2" onClick={onLogoutButtonClick}>
-                Logout
-            </button>
-        </div>
+        <SideMenu>
+            <div className="flex flex-col bg-white p-4">
+                Welcome {data?.user.name}!
+                <p className="mt-3">
+                    I want to show you something,&nbsp;
+                    <button className="font-semibold" onClick={toggleModal}>
+                        click here
+                    </button>
+                    .
+                </p>
+                <WelcomeModal isOpen={open} onCloseEvent={toggleModal} />
+            </div>
+        </SideMenu>
     );
 };
 
