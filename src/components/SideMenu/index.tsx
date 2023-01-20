@@ -99,7 +99,8 @@ export default function Sidebar({ children }: Props) {
                     <div className="flex-1">
                         <ul className="pt-2 pb-4 space-y-1 text-sm">
                             {menuItems.map((item, index) => {
-                                if (item.adminOnly && data.authType !== 'ADMIN') return <></>;
+                                if (item.adminOnly && data.authType !== 'ADMIN')
+                                    return <div key={index}></div>;
                                 return getMenuItem(item, index);
                             })}
 
