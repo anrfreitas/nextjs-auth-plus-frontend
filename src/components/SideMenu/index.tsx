@@ -1,5 +1,4 @@
-import { signOut } from 'next-auth/react';
-import React from 'react';
+import { signOut, useSession } from 'next-auth/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as freeSolidIcons from '@fortawesome/free-solid-svg-icons';
 import useRedirect from '@/hooks/useRedirect';
@@ -11,12 +10,14 @@ type Props = {
 type MenuItem = {
     label: string;
     icon: JSX.Element;
+    adminOnly: boolean;
     redirect: () => Promise<boolean>;
 };
 
-// @TODO - make it responsible
+// @TODO - make it responsive
 export default function Sidebar({ children }: Props) {
     const redirect = useRedirect();
+    const { data } = useSession();
 
     const menuItems: MenuItem[] = [
         {
@@ -27,6 +28,7 @@ export default function Sidebar({ children }: Props) {
                     className="h-5 w-5 ml-1 align-middle"
                 />
             ),
+            adminOnly: false,
             redirect: redirect.redirectToDashboard,
         },
         {
@@ -37,6 +39,7 @@ export default function Sidebar({ children }: Props) {
                     className="h-5 w-5 ml-1 align-middle"
                 />
             ),
+            adminOnly: true,
             redirect: redirect.redirectToDashboard,
         },
         {
@@ -47,9 +50,24 @@ export default function Sidebar({ children }: Props) {
                     className="h-5 w-5 ml-1 align-middle"
                 />
             ),
+            adminOnly: false,
             redirect: redirect.redirectToDashboard,
         },
     ];
+
+    const getMenuItem = (item: MenuItem, index: number): JSX.Element => {
+        return (
+            <li key={`${item.label}-${index}`} className="rounded-sm">
+                <button
+                    onClick={item.redirect}
+                    className="flex items-center p-2 space-x-3 rounded-md"
+                >
+                    {item.icon}
+                    <span>{item.label}</span>
+                </button>
+            </li>
+        );
+    };
 
     const onLogoutButtonClick = async () => {
         await signOut();
@@ -60,7 +78,7 @@ export default function Sidebar({ children }: Props) {
             <div className="flex flex-col h-screen p-3 bg-silver-ultra-light shadow w-60">
                 <div className="space-y-3">
                     <div className="flex items-center">
-                        <h2 className="text-xl font-bold">Dashboard</h2>
+                        <h2 className="text-xl font-bold">Menu</h2>
                     </div>
                     <div className="relative">
                         <span className="absolute inset-y-0 left-0 flex items-center py-4">
@@ -80,17 +98,10 @@ export default function Sidebar({ children }: Props) {
                     </div>
                     <div className="flex-1">
                         <ul className="pt-2 pb-4 space-y-1 text-sm">
-                            {menuItems.map((item, index) => (
-                                <li key={`${item.label}-${index}`} className="rounded-sm">
-                                    <button
-                                        onClick={item.redirect}
-                                        className="flex items-center p-2 space-x-3 rounded-md"
-                                    >
-                                        {item.icon}
-                                        <span>{item.label}</span>
-                                    </button>
-                                </li>
-                            ))}
+                            {menuItems.map((item, index) => {
+                                if (item.adminOnly && data.authType !== 'ADMIN') return <></>;
+                                return getMenuItem(item, index);
+                            })}
 
                             <li className="rounded-sm">
                                 <button

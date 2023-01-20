@@ -1,14 +1,16 @@
 type Props = {
-    text: string;
+    text: string | JSX.Element;
     className?: string;
     id?: string;
     icon?: JSX.Element;
     dataCy?: string;
-    onClick: () => Promise<void>;
+    disabled?: boolean;
+    onClick: () => void;
 };
 
 // @todo - add disabled state
-const Button = ({ id, text, className, icon, dataCy, onClick }: Props) => {
+const Button = ({ id, text, className, icon, dataCy, disabled, onClick }: Props) => {
+    if (disabled) console.log('@todo - add disabled state');
     return (
         <div
             id={id}
