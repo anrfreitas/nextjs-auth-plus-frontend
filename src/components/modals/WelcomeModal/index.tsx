@@ -6,9 +6,11 @@ interface Props {
     isOpen: boolean;
     onCloseEvent: () => void;
 }
+
 const WelcomeModal = ({ isOpen, onCloseEvent }: Props) => {
     const { data } = useSession();
     const title = 'Welcome';
+
     return (
         <Modal contentLabel={title} isOpen={isOpen}>
             <Modal.Header title={title} requestClose={onCloseEvent} />

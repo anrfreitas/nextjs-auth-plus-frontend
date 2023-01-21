@@ -40,7 +40,7 @@ export default function Sidebar({ children }: Props) {
                 />
             ),
             adminOnly: true,
-            redirect: redirect.redirectToDashboard,
+            redirect: redirect.redirectToManageUsers,
         },
         {
             label: 'My account',
