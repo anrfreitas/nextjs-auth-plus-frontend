@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react';
-import useToaster from '@/hooks/useToaster';
-import Button from '@/components/controls/Button';
-import Modal from '@/components/helpers/Modal';
+import useToaster from '@hooks/useToaster';
+import Button from '@components/controls/Button';
+import Modal from '@components/helpers/Modal';
 
 interface Props {
     isOpen: boolean;

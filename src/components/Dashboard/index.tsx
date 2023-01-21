@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
-import Container from '../controls/Container';
-import WelcomeModal from '../modals/WelcomeModal';
+import Container from '@components/controls/Container';
+import WelcomeModal from '@components/modals/WelcomeModal';
 
 const Dashboard = () => {
     const { data } = useSession();

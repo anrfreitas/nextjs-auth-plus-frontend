@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import SideMenu from '@/components/SideMenu';
-import LoadingScreen from '@/components/LoadingScreen';
+import SideMenu from '@components/SideMenu';
+import LoadingScreen from '@components/LoadingScreen';
 
 const Container = ({ children }) => {
     const { status } = useSession<false>();

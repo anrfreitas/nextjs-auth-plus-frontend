@@ -1,7 +1,7 @@
 import { signOut, useSession } from 'next-auth/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as freeSolidIcons from '@fortawesome/free-solid-svg-icons';
-import useRedirect from '@/hooks/useRedirect';
+import useRedirect from '@hooks/useRedirect';
 
 type Props = {
     children: JSX.Element;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Container from '../controls/Container';
-import Table from '../controls/Table';
+import Container from '@components/controls/Container';
+import Table from '@components/controls/Table';
 
 const ManageUsers = () => {
     const [page, setPage] = useState(0);
