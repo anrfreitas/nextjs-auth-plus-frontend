@@ -8,7 +8,11 @@ const TableHeader: React.FC<Props> = ({ headers }) => {
             <thead>
                 <tr className="h-10 bg-silver-ultra-light text-sm">
                     {headers.map((item, index) => (
-                        <th key={index} scope="col" className="uppercase">
+                        <th
+                            key={index}
+                            scope="col"
+                            className={`uppercase ${index > 1 && 'hidden lg:table-cell'}`}
+                        >
                             {item}
                         </th>
                     ))}

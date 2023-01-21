@@ -55,6 +55,10 @@ const ManageUsers = () => {
         console.log('@todo - on refresh table click action');
     };
 
+    const onSearchClick = (searchTerm: string) => {
+        console.log('@todo - on search click action', searchTerm);
+    };
+
     return (
         <Container>
             <Table
@@ -68,6 +72,7 @@ const ManageUsers = () => {
                 onNextPageClick={onNextPageClick}
                 onPreviousPageClick={onPreviousPageClick}
                 onRefreshTableClick={onRefreshTableClick}
+                onSearchClick={onSearchClick}
             />
         </Container>
     );

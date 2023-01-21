@@ -37,7 +37,12 @@ const TableBody: React.FC<Props> = ({ items, keyItemName, onEditClick, onRemoveC
                     return (
                         <tr key={rowItemIndex} className="h-10 border-b border-silver-ultra-light">
                             {Object.values(rowItem).map((rowItemData, rowItemDataIndex) => (
-                                <td key={rowItemDataIndex}>{rowItemData}</td>
+                                <td
+                                    key={rowItemDataIndex}
+                                    className={`${rowItemDataIndex > 1 && 'hidden lg:table-cell'}`}
+                                >
+                                    {rowItemData}
+                                </td>
                             ))}
                             <td>{getTableActionItems(rowItem[keyItemName])}</td>
                         </tr>
