@@ -2,10 +2,10 @@ import { signIn, useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as freeBrandsIcons from '@fortawesome/free-brands-svg-icons';
-import Button from '../controls/Button';
-import TextInput from '../controls/TextInput';
-import LoadingScreen from '../LoadingScreen';
-import useRedirect from '@/hooks/useRedirect';
+import TextInput from '@components/controls/TextInput';
+import Button from '@components/controls/Button';
+import useRedirect from '@hooks/useRedirect';
+import LoadingScreen from '@components/LoadingScreen';
 
 const Login = () => {
     const redirect = useRedirect();
