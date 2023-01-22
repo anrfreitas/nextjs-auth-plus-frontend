@@ -1,4 +1,4 @@
-import Button from '@/components/controls/Button';
+import Button from '@components/controls/Button';
 
 type FooterType = 'default' | 'centered';
 
