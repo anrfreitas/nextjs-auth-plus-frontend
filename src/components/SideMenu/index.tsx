@@ -51,7 +51,7 @@ export default function Sidebar({ children }: Props) {
                 />
             ),
             adminOnly: false,
-            redirect: redirect.redirectToDashboard,
+            redirect: redirect.redirectToProfile,
         },
     ];
 

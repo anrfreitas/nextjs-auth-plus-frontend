@@ -62,10 +62,11 @@ const ManageUsers = () => {
     return (
         <Container>
             <Table
-                title="Users listing"
+                title="User listing"
                 headers={headers}
                 items={items}
-                keyItemName="id"
+                primaryKeyItemName="id"
+                indexKeysHidden={[]}
                 page={page}
                 onEditClick={onEditClick}
                 onRemoveClick={onRemoveClick}

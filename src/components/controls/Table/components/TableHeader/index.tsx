@@ -1,8 +1,13 @@
 interface Props {
     headers: string[];
+    indexKeysHidden: number[];
 }
 
-const TableHeader: React.FC<Props> = ({ headers }) => {
+const TableHeader: React.FC<Props> = ({ headers, indexKeysHidden }) => {
+    const isIndexKeyHidden = (keyIndex: number): boolean => {
+        return indexKeysHidden.includes(keyIndex);
+    };
+
     const TableHeader = (): JSX.Element => {
         return (
             <thead>
@@ -11,7 +16,9 @@ const TableHeader: React.FC<Props> = ({ headers }) => {
                         <th
                             key={index}
                             scope="col"
-                            className={`uppercase ${index > 1 && 'hidden lg:table-cell'}`}
+                            className={`uppercase ${isIndexKeyHidden(index) && 'hidden'} ${
+                                index > 1 && 'hidden lg:table-cell'
+                            }`}
                         >
                             {item}
                         </th>

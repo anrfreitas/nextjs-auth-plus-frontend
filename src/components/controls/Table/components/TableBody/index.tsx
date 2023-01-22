@@ -3,21 +3,34 @@ import * as freeSolidIcons from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
     items: Record<string, string>[];
-    keyItemName: string;
+    primaryKeyItemName: string;
+    indexKeysHidden: number[];
     onEditClick: (id: string) => void;
     onRemoveClick?: (id: string) => void;
 }
 
-const TableBody: React.FC<Props> = ({ items, keyItemName, onEditClick, onRemoveClick }) => {
+const TableBody: React.FC<Props> = ({
+    items,
+    primaryKeyItemName,
+    indexKeysHidden,
+    onEditClick,
+    onRemoveClick,
+}) => {
+    const isIndexKeyHidden = (keyIndex: number): boolean => {
+        return indexKeysHidden.includes(keyIndex);
+    };
+
     const getTableActionItems = (keyItemId: string): JSX.Element => {
         return (
             <>
-                <button onClick={() => onEditClick(keyItemId)}>
-                    <FontAwesomeIcon
-                        icon={freeSolidIcons.faEdit}
-                        className="h-4 w-4 ml-4 align-middle"
-                    />
-                </button>
+                {onEditClick && (
+                    <button onClick={() => onEditClick(keyItemId)}>
+                        <FontAwesomeIcon
+                            icon={freeSolidIcons.faEdit}
+                            className="h-4 w-4 ml-4 align-middle"
+                        />
+                    </button>
+                )}
                 {onRemoveClick && (
                     <button onClick={() => onRemoveClick(keyItemId)}>
                         <FontAwesomeIcon
@@ -39,12 +52,14 @@ const TableBody: React.FC<Props> = ({ items, keyItemName, onEditClick, onRemoveC
                             {Object.values(rowItem).map((rowItemData, rowItemDataIndex) => (
                                 <td
                                     key={rowItemDataIndex}
-                                    className={`${rowItemDataIndex > 1 && 'hidden lg:table-cell'}`}
+                                    className={`${isIndexKeyHidden(rowItemDataIndex) && 'hidden'} ${
+                                        rowItemDataIndex > 1 && 'hidden lg:table-cell'
+                                    }`}
                                 >
                                     {rowItemData}
                                 </td>
                             ))}
-                            <td>{getTableActionItems(rowItem[keyItemName])}</td>
+                            <td>{getTableActionItems(rowItem[primaryKeyItemName])}</td>
                         </tr>
                     );
                 })}
