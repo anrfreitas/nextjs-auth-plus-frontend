@@ -19,7 +19,8 @@ const FooterBar: React.FC<Props> = ({
             <div className="flex flex-row-reverse">
                 <div
                     onClick={onNextPageClick}
-                    className="h-8 w-8 bg-gray-dark text-white text-center leading-8 cursor-pointer ml-2"
+                    title="Go to next page"
+                    className="h-8 w-8 bg-gray-dark hover:bg-[#2f3f52] text-white text-center leading-8 cursor-pointer ml-2"
                 >
                     <FontAwesomeIcon
                         icon={freeSolidIcons.faChevronRight}
@@ -29,7 +30,8 @@ const FooterBar: React.FC<Props> = ({
 
                 <div
                     onClick={onPreviousPageClick}
-                    className="h-8 w-8 bg-gray-dark text-white text-center leading-8 cursor-pointer ml-2"
+                    title="Go to previous page"
+                    className="h-8 w-8 bg-gray-dark hover:bg-[#2f3f52] text-white text-center leading-8 cursor-pointer ml-2"
                 >
                     <FontAwesomeIcon
                         icon={freeSolidIcons.faChevronLeft}
@@ -40,7 +42,8 @@ const FooterBar: React.FC<Props> = ({
                 {onRefreshTableClick && (
                     <div
                         onClick={onRefreshTableClick}
-                        className="h-8 w-8 bg-gray-dark text-white text-center leading-8 cursor-pointer ml-2"
+                        title="Refresh table"
+                        className="h-8 w-8 bg-gray-dark hover:bg-[#2f3f52] text-white text-center leading-8 cursor-pointer ml-2"
                     >
                         <FontAwesomeIcon
                             icon={freeSolidIcons.faRefresh}

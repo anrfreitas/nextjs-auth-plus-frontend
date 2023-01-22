@@ -5,11 +5,17 @@ import Button from '@components/controls/Button';
 import Select, { Option } from '@components/controls/Select';
 import Table from '@components/controls/Table';
 import H1 from '@components/controls/headings/H1';
+import AddNumberModal from '@components/modals/AddNumberModal';
+import useToaster from '@hooks/useToaster';
 
 const Profile = () => {
+    const { messageBox } = useToaster();
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [userType, setUserType] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+
     const [page, setPage] = useState(0);
     const headers = ['id', 'number'];
     const items = [
@@ -25,7 +31,7 @@ const Profile = () => {
 
     const userTypes: Option[] = [
         {
-            text: 'Normal',
+            text: 'User',
             value: 'USER',
         },
         {
@@ -35,7 +41,9 @@ const Profile = () => {
     ];
 
     const onRemoveClick = (id: string) => {
-        console.log('@todo - remove action', id);
+        if (confirm('Are you sure about deleting this phone number?')) {
+            console.log('@todo - remove action', id);
+        }
     };
 
     const onNextPageClick = () => {
@@ -49,14 +57,19 @@ const Profile = () => {
     };
 
     const onRefreshTableClick = () => {
+        messageBox('Refreshing table data...');
         console.log('@todo - on refresh table click action');
+    };
+
+    const onAddNewTableClick = () => {
+        setModalOpen(true);
     };
 
     const onSearchClick = (searchTerm: string) => {
         console.log('@todo - on search click action', searchTerm);
     };
 
-    const onSaveClick = () => {
+    const onSaveProfileClick = () => {
         const payload = {
             name,
             email,
@@ -65,11 +78,20 @@ const Profile = () => {
 
         console.log('@todo - on button save click', payload);
     };
-    // hide first item feature
+
+    const onCloseModalClick = () => {
+        setModalOpen(false);
+    };
+
+    const onSaveModalClick = () => {
+        console.log('@todo - on button save number click');
+        setModalOpen(false);
+    };
+
     return (
         <Container>
             <div className="flex flex-col lg:flex-row">
-                <div className="flex flex-col w-80">
+                <div className="flex flex-col lg:w-96">
                     <H1 text="Edit Profile" className="border-b" />
                     <span>Name:</span>
                     <TextInput value={name} setValue={setName} placeholder="Name" />
@@ -77,7 +99,7 @@ const Profile = () => {
                     <TextInput disabled value={email} setValue={setEmail} placeholder="Email" />
                     <span className="mt-3">User Type:</span>
                     <Select value={userType} options={userTypes} setValue={setUserType} />
-                    <Button text="Save" onClick={onSaveClick} className="mt-3" />
+                    <Button text="Save" onClick={onSaveProfileClick} className="mt-3" />
                 </div>
                 <Table
                     title="Telephone listing"
@@ -92,7 +114,13 @@ const Profile = () => {
                     onNextPageClick={onNextPageClick}
                     onPreviousPageClick={onPreviousPageClick}
                     onRefreshTableClick={onRefreshTableClick}
+                    onAddNewTableClick={onAddNewTableClick}
                     onSearchClick={onSearchClick}
+                />
+                <AddNumberModal
+                    onCloseClick={onCloseModalClick}
+                    isOpen={modalOpen}
+                    onSaveClick={onSaveModalClick}
                 />
             </div>
         </Container>

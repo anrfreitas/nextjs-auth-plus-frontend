@@ -5,10 +5,10 @@ import Modal from '@components/helpers/Modal';
 
 interface Props {
     isOpen: boolean;
-    onCloseEvent: () => void;
+    onCloseClick: () => void;
 }
 
-const WelcomeModal = ({ isOpen, onCloseEvent }: Props) => {
+const WelcomeModal = ({ isOpen, onCloseClick }: Props) => {
     const { data } = useSession();
     const { messageBox } = useToaster();
 
@@ -16,7 +16,7 @@ const WelcomeModal = ({ isOpen, onCloseEvent }: Props) => {
 
     return (
         <Modal contentLabel={title} isOpen={isOpen}>
-            <Modal.Header title={title} requestClose={onCloseEvent} />
+            <Modal.Header title={title} requestClose={onCloseClick} />
             <Modal.Content>
                 <div className="lg:w-full">
                     <p className="text-black text-md">Hey {data?.user.name}!</p>
@@ -25,7 +25,7 @@ const WelcomeModal = ({ isOpen, onCloseEvent }: Props) => {
                     <div className="max-w-[328px] mx-auto mt-6">
                         <Button
                             onClick={() => {
-                                onCloseEvent();
+                                onCloseClick();
                                 messageBox("You're welcome!");
                             }}
                             text="Thanks"

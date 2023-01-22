@@ -19,7 +19,7 @@ const Dashboard = () => {
                 </button>
                 .
             </p>
-            <WelcomeModal isOpen={open} onCloseEvent={toggleModal} />
+            <WelcomeModal isOpen={open} onCloseClick={toggleModal} />
         </Container>
     );
 };

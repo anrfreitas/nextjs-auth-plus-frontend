@@ -14,6 +14,7 @@ interface Props {
     hideSearchBar?: boolean;
     onNextPageClick: () => void;
     onPreviousPageClick: () => void;
+    onAddNewTableClick?: () => void;
     onEditClick?: (id: string) => void;
     onSearchClick?: (searchTerm: string) => void;
     onRemoveClick?: (id: string) => void;
@@ -35,10 +36,16 @@ const Table: React.FC<Props> = ({
     onPreviousPageClick,
     onRefreshTableClick,
     onSearchClick,
+    onAddNewTableClick,
 }) => {
     return (
         <div className={`flex flex-col ${className}`}>
-            <HeaderBar title={title} hideSearchBar={hideSearchBar} onSearchClick={onSearchClick} />
+            <HeaderBar
+                title={title}
+                hideSearchBar={hideSearchBar}
+                onSearchClick={onSearchClick}
+                onAddNewTableClick={onAddNewTableClick}
+            />
 
             <table className="table-auto">
                 <TableHeader headers={headers} indexKeysHidden={indexKeysHidden} />

@@ -60,10 +60,11 @@ export default function Sidebar({ children }: Props) {
             <li key={`${item.label}-${index}`} className="rounded-sm">
                 <button
                     onClick={item.redirect}
-                    className="flex items-center p-2 space-x-3 rounded-md"
+                    className="flex items-center p-2 space-x-3 rounded-md m-auto lg:m-0 "
+                    title={item.label}
                 >
                     {item.icon}
-                    <span>{item.label}</span>
+                    <span className="hidden lg:block">{item.label}</span>
                 </button>
             </li>
         );
@@ -75,12 +76,12 @@ export default function Sidebar({ children }: Props) {
 
     return (
         <div className="flex">
-            <div className="flex flex-col h-screen p-3 bg-silver-ultra-light shadow w-60">
+            <div className="flex flex-col h-screen p-3 bg-silver-ultra-light shadow lg:w-60">
                 <div className="space-y-3">
                     <div className="flex items-center">
                         <h2 className="text-xl font-bold">Menu</h2>
                     </div>
-                    <div className="relative">
+                    <div className="relative hidden lg:block">
                         <span className="absolute inset-y-0 left-0 flex items-center py-4">
                             <button type="submit" className="p-2 focus:outline-none focus:ring">
                                 <FontAwesomeIcon
@@ -107,20 +108,21 @@ export default function Sidebar({ children }: Props) {
                             <li className="rounded-sm">
                                 <button
                                     onClick={onLogoutButtonClick}
-                                    className="flex items-center p-2 space-x-3 rounded-md"
+                                    className="flex items-center p-2 space-x-3 rounded-md m-auto lg:m-0"
+                                    title="Logout"
                                 >
                                     <FontAwesomeIcon
                                         icon={freeSolidIcons.faRightFromBracket}
                                         className="h-5 w-5 ml-1 align-middle"
                                     />
-                                    <span>Logout</span>
+                                    <span className="hidden lg:block">Logout</span>
                                 </button>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div className="container ml-5 mt-8">{children}</div>
+            <div className="container ml-1 mt-8">{children}</div>
         </div>
     );
 }
